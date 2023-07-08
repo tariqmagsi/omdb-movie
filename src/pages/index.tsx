@@ -41,12 +41,13 @@ export default function Search() {
     searchMovies(search, 1);
   }
 
-  const searchMovies = useCallback(async (searchText: string, currentPage: number) => {
+  const searchMovies = async (searchText: string, currentPage: number) => {
     setSearching(true)
     if (currentPage === 1) {
       setCurrentPage(1)
       setTotalPages(0)
     }
+    console.log(isLoadedFirstTime)
     try {
       const searchType = `s=${searchText}&type=${movieType}&y=${year}&page=${currentPage}`;
       const result = await Service.searchMovie(searchType)
@@ -66,7 +67,7 @@ export default function Search() {
       setIsLoadedFirstTime(false)
       setSearching(false)
     }
-  }, [isLoadedFirstTime, movieType, year])
+  }
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -80,8 +81,9 @@ export default function Search() {
   }
 
   useEffect(() => {
-     searchMovies('abc', 1);
-  }, [searchMovies])
+    searchMovies('abc', 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
