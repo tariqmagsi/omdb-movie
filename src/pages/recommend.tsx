@@ -68,6 +68,7 @@ export default function Recommend() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
+        <h1>Recommendations</h1>
         {!loading ?
           <div className={styles.cardsContainer}>
             {movies.slice(0, 5).map(m =>

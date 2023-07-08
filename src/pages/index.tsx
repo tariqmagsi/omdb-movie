@@ -94,6 +94,7 @@ export default function Search() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
+        <h1>Search</h1>
         <Searchbar search={search} movieType={movieType} handleSubmit={handleSearchMovies} handleInputChange={handleInputChange} handleSelectChange={handleSelectChange} year={year} />
         {getFromStorage('lastViewed') && 
           <button onClick={lastViewed} className={styles.button}>

@@ -72,6 +72,7 @@ export default function View() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={`${styles.main} ${inter.className}`}>
+                <h1>Movie Description</h1>
                 {!loading ? 
                     <div className={styles.movieContainer}>
                         <div className={styles.poster}>
