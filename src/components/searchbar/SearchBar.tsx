@@ -25,13 +25,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ search, movieType, year, handleSu
     value={search}
     onChange={handleInputChange}
   />
-  <select name='movieType' value={movieType} style={{color: movieType.length ? movieType : 'silver'}} onChange={handleSelectChange} className={styles.select}>
+  <select name='movieType' value={movieType} onChange={handleSelectChange} className={styles.select}>
     <option value="">All Types</option>
     <option value="movie">Movies</option>
     <option value="series">Series</option>
     <option value="episode">Episodes</option>
   </select>
-  <select name='year' value={year} style={{color: year.length ? year : 'silver'}} onChange={handleSelectChange} className={styles.select}>
+  <select name='year' value={year} onChange={handleSelectChange} className={styles.select}>
     <option value="">Year</option>
     {renderYearOptions()}
   </select>
