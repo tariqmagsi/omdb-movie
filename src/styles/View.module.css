@@ -1,0 +1,58 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6rem;
+    min-height: 100vh;
+}
+
+.movieContainer {
+    display: flex;
+    margin: 20px;
+}
+
+.poster img {
+    width: 400px;
+}
+
+.details {
+    margin-left: 20px;
+}
+
+.subDetails {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.plot {
+    margin-bottom: 10px;
+}
+
+.ratings {
+    margin-bottom: 10px;
+}
+
+.source {
+    font-weight: bold;
+}
+
+.additionalDetails {
+    margin-top: 10px;
+}
+
+.property {
+    flex: 1;
+}
+
+.list {
+    padding: 0;
+    list-style: none;
+}

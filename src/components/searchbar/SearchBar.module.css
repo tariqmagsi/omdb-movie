@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+}
+
+.button {
+    padding: 10px 16px;
+    background-color: #326660;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.select {
+    padding: 10px;
+    border: 1px solid rgb(80, 80, 80);
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+    }
+}
