@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Recommend.module.css'
 import Movie from '@/components/movie/Movie'
 import { Service } from '@/config/service'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useCallback, useEffect, useState } from 'react'
 import { Movies } from '@/type/global.type'
 import Loader from '@/components/loader/Loader'
 
@@ -13,7 +13,7 @@ export default function Recommend() {
   const [movies, setMovies] = useState<Movies[]>([])
   const [loading, setLoading] = useState<boolean>(true)
 
-  const recommendMovies = async (search: string) => {
+  const recommendMovies = useCallback(async (search: string) => {
     setLoading(true)
     try {
       const searchType = `s=${search}`;
@@ -30,9 +30,11 @@ export default function Recommend() {
     } finally {
       setLoading(false)
     }
-  }
 
-  const generateRandomWord = () => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const generateRandomWord = useCallback(() => {
     const alphabet = 'abcdefghijklmnopqrstuvwxyz1234567890';
     let word = '';
     for (let i = 0; i < 3; i++) {
@@ -41,7 +43,7 @@ export default function Recommend() {
     }
     console.log(word)
     recommendMovies(word)
-  };
+  }, [recommendMovies]);
 
   useEffect(() => {
     recommendMovies('abc');
@@ -54,7 +56,7 @@ export default function Recommend() {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [generateRandomWord, recommendMovies]);
 
 
   return (

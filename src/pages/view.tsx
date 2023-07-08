@@ -3,14 +3,13 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/View.module.css'
 import { Service } from '@/config/service'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Movie } from '@/type/global.type'
 import Loader from '@/components/loader/Loader'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const initialMovieData: Movie = {
-    // Provide initial movie data here
     Title: '',
     Year: '',
     Rated: '',
@@ -44,7 +43,7 @@ export default function View() {
     const [movieData, setMovieData] = useState<Movie>(initialMovieData)
     const [loading, setLoading] = useState<boolean>(true)
 
-    const getMovie = async () => {
+    const getMovie = useCallback(async () => {
         setLoading(true)
         try {
             const searchType = `i=${router.query?.imdbID}`;
@@ -57,11 +56,11 @@ export default function View() {
         } finally {
             setLoading(false)
         }
-    }
+    }, [router.query])
 
     useEffect(() => {
         getMovie()
-    }, [router.query])
+    }, [router.query, getMovie])
 
 
     return (
@@ -76,7 +75,9 @@ export default function View() {
                 {!loading ? 
                     <div className={styles.movieContainer}>
                         <div className={styles.poster}>
-                            <img src={movieData.Poster} alt={movieData.Title} />
+                            <picture>
+                                <img src={movieData.Poster} alt={movieData.Title} />
+                            </picture>
                         </div>
                         <div className={styles.details}>
                             <h1>{movieData.Title}</h1>

@@ -21,7 +21,9 @@ const Movie: React.FC<MovieProps> = (movie) => {
 
     return (
         <div className={[styles.card, inter.className].join(' ')} onClick={handleClick}>
-            <img src={movie.Poster === 'N/A' ? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930' : movie.Poster} alt={movie.Title} className={styles.image} />
+            <picture>
+                <img src={movie.Poster === 'N/A' ? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930' : movie.Poster} alt={movie.Title} className={styles.image} />
+            </picture>
             <h3 className={styles.title}>{movie.Title}</h3>
             <p className={styles.type}>{movie.Type}<br />{movie.Year}</p>
         </div>

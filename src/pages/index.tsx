@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Search.module.css'
 import Movie from '@/components/movie/Movie'
 import Searchbar from '@/components/searchbar/SearchBar'
-import { ChangeEvent, FormEvent, Fragment, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, Fragment, useCallback, useEffect, useState } from 'react'
 import Pagination from '@/components/pagination/Pagination'
 import { Service } from '@/config/service'
 import { Movies } from '@/type/global.type'
@@ -41,7 +41,7 @@ export default function Search() {
     searchMovies(search, 1);
   }
 
-  const searchMovies = async (searchText: string, currentPage: number) => {
+  const searchMovies = useCallback(async (searchText: string, currentPage: number) => {
     setSearching(true)
     if (currentPage === 1) {
       setCurrentPage(1)
@@ -66,7 +66,7 @@ export default function Search() {
       setIsLoadedFirstTime(false)
       setSearching(false)
     }
-  }
+  }, [isLoadedFirstTime, movieType, year])
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -80,8 +80,8 @@ export default function Search() {
   }
 
   useEffect(() => {
-    searchMovies('abc', 1);
-  }, [])
+     searchMovies('abc', 1);
+  }, [searchMovies])
 
   return (
     <>
